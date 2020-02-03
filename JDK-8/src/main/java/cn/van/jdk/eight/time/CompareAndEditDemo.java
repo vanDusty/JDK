@@ -27,6 +27,9 @@ public class CompareAndEditDemo {
         compute();
     }
 
+    /**
+     * 时间比较
+     */
     public static void compare() {
         LocalDate thisDay = LocalDate.of(2008, 8, 8);
         LocalDate otherDay = LocalDate.of(2018, 8, 8);
@@ -41,6 +44,9 @@ public class CompareAndEditDemo {
     }
 
 
+    /**
+     * 增加/减少年数、月数、天数
+     */
     public static void plusAndMinus() {
         // 增加
         LocalDateTime today = LocalDateTime.now();
@@ -69,6 +75,9 @@ public class CompareAndEditDemo {
         System.out.println("修改月后的时间为：" + thisMonthDay);
     }
 
+    /**
+     * 时间计算
+     */
     public static void compute() {
         // TemporalAdjusters 的静态方法
         LocalDate today = LocalDate.now();

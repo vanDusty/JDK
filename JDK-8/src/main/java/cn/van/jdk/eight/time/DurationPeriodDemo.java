@@ -25,6 +25,9 @@ public class DurationPeriodDemo {
 
     }
 
+    /**
+     * 时间段
+     */
     public static void duration() {
         LocalDateTime from = LocalDateTime.now();
         LocalDateTime to = LocalDateTime.now().plusDays(1);
