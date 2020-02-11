@@ -22,8 +22,7 @@
     </build>
 
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>jdk_5</artifactId>
+    <artifactId>jdk-5</artifactId>
 
 
     <dependencies>
