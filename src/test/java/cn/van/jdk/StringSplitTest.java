@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * @公众号： 风尘博客
  * @Classname StringTest
  * @Description 字符串分割
- * @Date 2020/3/1 19:30 下午
+ * @Date 2020/3/1 9:30 下午
  * @Author by Van
  */
 public class StringSplitTest {
