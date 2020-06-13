@@ -7,19 +7,19 @@ import java.util.List;
 /**
  * Copyright (C), 2015-2020, 风尘博客
  * 公众号 : 风尘博客
- * FileName: NetworkUtil
+ * FileName: LocalHostUtil
  *
  * @author: Van
  * Date:     2019-12-22 23:17
- * Description: 获取本机IP和主机名工具类
+ * Description: 本地主机工具类
  * Version： V1.0
  */
-public class NetworkUtil {
+public class LocalHostUtil {
 
     private static InetAddress inetAddress;
 
     /**
-     * 返回InetAddress
+     * 返回 InetAddress
      * @return
      */
     public static InetAddress getLocalInetAddress() {
@@ -53,6 +53,32 @@ public class NetworkUtil {
         } catch (UnknownHostException e) {
             return inetAddress.getHostName();
         }
+    }
+
+    /**
+     * 判断操作系统是否是 Windows
+     * @return
+     */
+    public static boolean isWindowsOS() {
+        boolean isWindowsOS = false;
+        String osName = getProperty("os.name");
+        if (osName.toLowerCase().indexOf("windows") > -1) {
+            isWindowsOS = true;
+        }
+        return isWindowsOS;
+    }
+
+    /**
+     * 判断操作系统是否是 MacOS
+     * @return
+     */
+    public static boolean isMacOS() {
+        boolean isWindowsOS = false;
+        String osName = getProperty("os.name");
+        if (osName.toLowerCase().indexOf("mac") > -1) {
+            isWindowsOS = true;
+        }
+        return isWindowsOS;
     }
 
     private static InetAddress findValidateIp(List<Address> addresses) {
@@ -122,10 +148,11 @@ public class NetworkUtil {
             InetAddress local = null;
 
             try {
+                // 遍历网络接口
                 for (NetworkInterface ni : nis) {
                     if (ni.isUp() && !ni.isLoopback()) {
                         List<InetAddress> list = Collections.list(ni.getInetAddresses());
-
+                        // 遍历网络地址
                         for (InetAddress address : list) {
                             addresses.add(new Address(address, ni));
                         }
