@@ -142,6 +142,7 @@ public class BigDecimalUtil {
 
     /**
      * 得到计算结果后四舍五入
+     *
      * @param val
      * @param scale 精度
      * @return 例如保留三位小数：0.646464 =》 0.646
@@ -153,7 +154,8 @@ public class BigDecimalUtil {
 
     /**
      * 得到计算结果后向上取整
-     * @param val val
+     *
+     * @param val   val
      * @param scale 精度
      * @return 例如保留三位小数：0.646464 =》 0.647
      */
@@ -164,7 +166,8 @@ public class BigDecimalUtil {
 
     /**
      * 得到计算结果后向下取整
-     * @param val val
+     *
+     * @param val   val
      * @param scale 精度
      * @return 例如保留三位小数：0.646464 =》 0.646
      */
@@ -188,8 +191,8 @@ public class BigDecimalUtil {
     /**
      * 除法运算加上向下取整。
      *
-     * @param v1 被除数
-     * @param v2 除数
+     * @param v1    被除数
+     * @param v2    除数
      * @param scale 精度
      * @return
      */
@@ -199,13 +202,14 @@ public class BigDecimalUtil {
 
     /**
      * 提供（相对）精确的除法运算。当发生除不尽的情况时，由 scale 参数指定精度，roundingMode 指定取舍方式。
-     * @param v1    被除数
-     * @param v2    除数
-     * @param scale 表示表示需要精确到小数点以后几位。
+     *
+     * @param v1           被除数
+     * @param v2           除数
+     * @param scale        表示表示需要精确到小数点以后几位。
      * @param roundingMode 指定取舍方式。
      * @return 两个参数的商
      */
-    private static double div(double v1, double v2, int scale,RoundingMode roundingMode) {
+    private static double div(double v1, double v2, int scale, RoundingMode roundingMode) {
         //如果精确范围小于0，抛出异常信息
         if (scale < 0) {
             throw new IllegalArgumentException("The scale must be a positive integer or zero");
@@ -221,7 +225,8 @@ public class BigDecimalUtil {
 
     /**
      * 小数点向右移动指定位数
-     * @param val 被乘数
+     *
+     * @param val   被乘数
      * @param index 移动位数
      * @return 例如向右移动四位小数：1000.01 =》 1000010.0
      */
@@ -232,7 +237,8 @@ public class BigDecimalUtil {
 
     /**
      * 小数点向左移动指定位数
-     * @param val 被除数
+     *
+     * @param val   被除数
      * @param index 移动位数
      * @return 例如向左移动四位小数：1000.01 =》 1.00001
      */

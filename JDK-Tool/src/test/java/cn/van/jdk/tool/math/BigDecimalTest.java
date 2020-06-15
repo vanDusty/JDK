@@ -20,6 +20,17 @@ public class BigDecimalTest {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
+    /**
+     * 演示精度丢失
+     */
+    @Test
+    public void countDemo() {
+        logger.info("result:{}", 0.06 + 0.01);
+        logger.info("result:{}", 1.0 - 0.42);
+        logger.info("result:{}", 4.015 * 100);
+        logger.info("result:{}", 303.1 / 1000);
+    }
+
     @Test
     public void add() {
         double v1 = BigDecimalUtil.add(1.1, 1.1);
@@ -74,10 +85,10 @@ public class BigDecimalTest {
     public void divWithScale() {
         double v1 = 1.5;
         double v2 = 2.25;
-        double divOfUp = BigDecimalUtil.divOfUp(v1,v2, 3);
+        double divOfUp = BigDecimalUtil.divOfUp(v1, v2, 3);
         logger.info("result:{}", divOfUp);
 
-        double divOfDown = BigDecimalUtil.divOfDown(v1,v2, 3);
+        double divOfDown = BigDecimalUtil.divOfDown(v1, v2, 3);
         logger.info("result:{}", divOfDown);
     }
 
@@ -100,10 +111,10 @@ public class BigDecimalTest {
         BigDecimal v1 = BigDecimal.valueOf(1.21);
         BigDecimal v2 = BigDecimal.valueOf(1.22);
         BigDecimal v3 = BigDecimal.valueOf(1.22);
-        // 0
-        logger.info("result:{}",v1.compareTo(v2));
-        logger.info("result:{}",v2.compareTo(v1));
-        logger.info("result:{}",v2.compareTo(v3));
+        // -1:小于、1:大于、0:等于
+        logger.info("result:{}", v1.compareTo(v2));
+        logger.info("result:{}", v2.compareTo(v1));
+        logger.info("result:{}", v2.compareTo(v3));
     }
 
     /**
@@ -116,8 +127,8 @@ public class BigDecimalTest {
         BigDecimal v3 = new BigDecimal("1.01");
         BigDecimal v4 = new BigDecimal("1.02");
         // 2.0300000000000000266453525910037569701671600341796875
-        logger.info("result:{}",v1.add(v2));
+        logger.info("result:{}", v1.add(v2));
         // 2.03
-        logger.info("result:{}",v3.add(v4));
+        logger.info("result:{}", v3.add(v4));
     }
 }
