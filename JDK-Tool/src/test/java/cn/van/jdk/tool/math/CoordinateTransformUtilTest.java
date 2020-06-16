@@ -27,14 +27,14 @@ public class CoordinateTransformUtilTest {
     }
 
     /**
-     * 指定经纬度是否在国外
+     * 将百度坐标系的经纬度转换成国际标准坐标系的经纬度
      */
     @Test
     public void convertLatLonByCoordinate() {
         String newCoordinateType = "baidu";
         String originalCoordinateType = "wgs84";
-        double lat = 39.526128;
         double lng = 115.25;
+        double lat = 39.526128;
         logger.info("result:{}", CoordinateTransformUtil.convertLatLonByCoordinate(newCoordinateType, originalCoordinateType, lng, lat));
     }
 }

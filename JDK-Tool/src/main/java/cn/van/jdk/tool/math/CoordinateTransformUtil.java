@@ -72,7 +72,7 @@ public class CoordinateTransformUtil {
         } else if (gcj02ToBd09) {
             return gcj02ToBd09(lng, lat);
         } else if (wgs84ToGcj02) {
-            return wgs84togcj02(lng, lat);
+            return wgs84ToGcj02(lng, lat);
         } else if (bd09ToGcj02) {
             return bd09ToGcj02(lng, lat);
         } else {
@@ -87,7 +87,7 @@ public class CoordinateTransformUtil {
      * @param lat 百度坐标经度
      * @return WGS84坐标数组
      */
-    public static double[] bd09ToWgs84(double lng, double lat) {
+    private static double[] bd09ToWgs84(double lng, double lat) {
         double[] gcj = bd09ToGcj02(lng, lat);
         double[] wgs84 = gcj02ToWgs84(gcj[0], gcj[1]);
         return wgs84;
@@ -100,8 +100,8 @@ public class CoordinateTransformUtil {
      * @param lat WGS84坐标系的纬度
      * @return 百度坐标数组
      */
-    public static double[] wgs84ToBd09(double lng, double lat) {
-        double[] gcj = wgs84togcj02(lng, lat);
+    private static double[] wgs84ToBd09(double lng, double lat) {
+        double[] gcj = wgs84ToGcj02(lng, lat);
         double[] bd09 = gcj02ToBd09(gcj[0], gcj[1]);
         return bd09;
     }
@@ -115,7 +115,7 @@ public class CoordinateTransformUtil {
      * @param lat 火星坐标纬度
      * @return 百度坐标数组
      */
-    public static double[] gcj02ToBd09(double lng, double lat) {
+    private static double[] gcj02ToBd09(double lng, double lat) {
         double z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * x_pi);
         double theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * x_pi);
         double bdLng = z * Math.cos(theta) + 0.0065;
@@ -132,7 +132,7 @@ public class CoordinateTransformUtil {
      * @param bd_lat 百度坐标经度
      * @return 火星坐标数组
      */
-    public static double[] bd09ToGcj02(double bd_lon, double bd_lat) {
+    private static double[] bd09ToGcj02(double bd_lon, double bd_lat) {
         double x = bd_lon - 0.0065;
         double y = bd_lat - 0.006;
         double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
@@ -149,7 +149,7 @@ public class CoordinateTransformUtil {
      * @param lat WGS84坐标系的纬度
      * @return 火星坐标数组
      */
-    public static double[] wgs84togcj02(double lng, double lat) {
+    private static double[] wgs84ToGcj02(double lng, double lat) {
         if (outOfChina(lng, lat)) {
             return new double[]{lng, lat};
         }
@@ -173,7 +173,7 @@ public class CoordinateTransformUtil {
      * @param lat 火星坐标系纬度
      * @return WGS84坐标数组
      */
-    public static double[] gcj02ToWgs84(double lng, double lat) {
+    private static double[] gcj02ToWgs84(double lng, double lat) {
         if (outOfChina(lng, lat)) {
             return new double[]{lng, lat};
         }
@@ -197,7 +197,7 @@ public class CoordinateTransformUtil {
      * @param lat
      * @return
      */
-    public static double transformLat(double lng, double lat) {
+    private static double transformLat(double lng, double lat) {
         double ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + 0.1 * lng * lat + 0.2 * Math.sqrt(Math.abs(lng));
         ret += (20.0 * Math.sin(6.0 * lng * pi) + 20.0 * Math.sin(2.0 * lng * pi)) * 2.0 / 3.0;
         ret += (20.0 * Math.sin(lat * pi) + 40.0 * Math.sin(lat / 3.0 * pi)) * 2.0 / 3.0;
@@ -212,7 +212,7 @@ public class CoordinateTransformUtil {
      * @param lat
      * @return
      */
-    public static double transformLng(double lng, double lat) {
+    private static double transformLng(double lng, double lat) {
         double ret = 300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng));
         ret += (20.0 * Math.sin(6.0 * lng * pi) + 20.0 * Math.sin(2.0 * lng * pi)) * 2.0 / 3.0;
         ret += (20.0 * Math.sin(lng * pi) + 40.0 * Math.sin(lng / 3.0 * pi)) * 2.0 / 3.0;
