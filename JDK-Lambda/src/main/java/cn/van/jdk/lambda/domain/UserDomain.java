@@ -1,6 +1,4 @@
-package cn.van.jdk.eight.lambda;
-
-import lombok.Data;
+package cn.van.jdk.lambda.domain;
 
 /**
  * Copyright (C), 2015-2020, 风尘博客
@@ -12,12 +10,27 @@ import lombok.Data;
  * Description: ${DESCRIPTION}
  * Version： V1.0
  */
-@Data
 public class UserDomain {
 
     private Long userId;
 
     private String userName;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public UserDomain() {
 
