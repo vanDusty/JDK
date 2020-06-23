@@ -1,7 +1,8 @@
-package cn.van.jdk.eight.string;
+package cn.van.jdk.string.splice;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +11,14 @@ import java.util.stream.Collectors;
 
 /**
  * @公众号： 风尘博客
- * @Classname StringSpliceDemo
+ * @Classname StringSpliceTest
  * @Description 字符串拼接
  * @Date 2020/3/01 4:18 下午
  * @Author by Van
  */
-@Slf4j
 public class StringSpliceTest {
+
+    protected Logger logger= LoggerFactory.getLogger(getClass());
 
     /**
      * 使用`+`拼接字符串
@@ -26,7 +28,7 @@ public class StringSpliceTest {
         String str = "风尘";
         String weChat = "博客";
         String string = str + weChat;
-        System.out.println(string);
+        logger.info(string);
     }
 
     /**
@@ -37,7 +39,9 @@ public class StringSpliceTest {
         String str = "风尘";
         String weChat = "博客";
         String string = str.concat(weChat);
-        System.out.println(string);
+        logger.info(string);
+        // java.lang.NullPointerException
+        str.concat(null);
     }
 
     /**
@@ -47,7 +51,7 @@ public class StringSpliceTest {
     public void stringBuffer() {
         StringBuffer str = new StringBuffer("欢迎关注");
         StringBuffer string = str.append(":").append("风尘博客");
-        System.out.println(string.toString());
+        logger.info(string.toString());
     }
 
     /**
@@ -57,7 +61,7 @@ public class StringSpliceTest {
     public void stringBuilder() {
         StringBuilder str = new StringBuilder("欢迎关注");
         StringBuilder string = str.append(":").append("风尘博客");
-        System.out.println(string.toString());
+        logger.info(string.toString());
     }
 
     /**
@@ -67,17 +71,7 @@ public class StringSpliceTest {
     public void stringJoiner() {
         StringJoiner str = new StringJoiner(":");
         str.add("欢迎关注").add("风尘博客");
-        System.out.println(str.toString());
-    }
-
-    /**
-     * String 类的 join 方法
-     */
-    @Test
-    public void join() {
-        // 第一个参数为字符串连接符。
-        String str = String.join(":","欢迎关注","风尘博客");
-        System.out.println(str);
+        logger.info(str.toString());
     }
 
     /**
@@ -89,6 +83,16 @@ public class StringSpliceTest {
         list.add("欢迎关注");
         list.add("风尘博客");
         String str = list.stream().collect(Collectors.joining(":"));
-        System.out.println(str);
+        logger.info(str);
+    }
+
+    /**
+     * String 类的 join 方法
+     */
+    @Test
+    public void join() {
+        // 第一个参数为字符串连接符。
+        String str = String.join(":","欢迎关注","风尘博客");
+        logger.info(str);
     }
 }
