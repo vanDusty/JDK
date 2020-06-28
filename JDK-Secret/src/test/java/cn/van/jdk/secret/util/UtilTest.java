@@ -45,14 +45,11 @@ public class UtilTest {
 
     @Test
     public void summaryTest() {
-
         // 要加密的数据
         String message = "你好，我是要发送的数据";
-
         // 使用公钥加密
         String secret0 = SummaryEncryptionUtil.encodeWithMD5(message);
         logger.info("MD5 加密后的密文：[{}]", secret0);
-
         // 使用私钥解密
         String secret1 = SummaryEncryptionUtil.encodeWithSHA1(message);
         logger.info("SHA1 解密后的明文：[{}]",secret1);
