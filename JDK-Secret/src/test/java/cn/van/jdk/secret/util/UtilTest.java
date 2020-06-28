@@ -3,8 +3,6 @@ package cn.van.jdk.secret.util;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
 import java.util.Map;
 
 public class UtilTest {
@@ -37,12 +35,30 @@ public class UtilTest {
         String message = "你好，我是要发送的数据";
 
         // 使用公钥加密
-        String messageEn = RSAUtil.encrypt(message, keyMap.get(0));
-        logger.info("RSA 加密后的密文：[{}]", messageEn);
+        String secret0 = RSAUtil.encrypt(message, keyMap.get(0));
+        logger.info("RSA 加密后的密文：[{}]", secret0);
 
         // 使用私钥解密
-        String messageDe = RSAUtil.decrypt(messageEn, keyMap.get(1));
-        logger.info("RSA 解密后的明文：[{}]",messageDe);
+        String secret1 = RSAUtil.decrypt(secret0, keyMap.get(1));
+        logger.info("RSA 解密后的明文：[{}]",secret1);
+    }
+
+    @Test
+    public void summaryTest() {
+
+        // 要加密的数据
+        String message = "你好，我是要发送的数据";
+
+        // 使用公钥加密
+        String secret0 = SummaryEncryptionUtil.encodeWithMD5(message);
+        logger.info("MD5 加密后的密文：[{}]", secret0);
+
+        // 使用私钥解密
+        String secret1 = SummaryEncryptionUtil.encodeWithSHA1(message);
+        logger.info("SHA1 解密后的明文：[{}]",secret1);
+        // 使用私钥解密
+        String secret2 = SummaryEncryptionUtil.encodeWithSHA256(message);
+        logger.info("SHA256 解密后的明文：[{}]",secret2);
     }
 
 
