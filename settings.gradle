@@ -1,2 +1,4 @@
 rootProject.name = 'project-jdk'
 include 'jdk-stream'
+include 'code-optimization'
+

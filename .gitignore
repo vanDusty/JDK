@@ -1,6 +1,7 @@
 .idea/
 .iml
 .DS_Store
+.gradle
 /*/.DS_Store
 /*/.settings/
 /*/target/
@@ -8,3 +9,4 @@
 /*/.project
 /*/bin/
 /*/logs/
+/gradle
